@@ -2,17 +2,17 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "~> 4.57.0"
+      version = "~> 5.0"
     }
   }
 }
 
 provider "aws" {
-  region = "eu-west-1"
+  region = "us-east-2"
 }
 
-module "my_workerpool" {
-  source = "github.com/spacelift-io/terraform-aws-spacelift-workerpool-on-ec2?ref=v2.3.5"
+module "aaron_workerpool" {
+  source = "github.com/spacelift-io/terraform-aws-spacelift-workerpool-on-ec2?ref=v4.0.0"
 
   configuration = <<-EOT
     export SPACELIFT_TOKEN="${var.worker_pool_config}"
@@ -20,7 +20,7 @@ module "my_workerpool" {
   EOT
 
   min_size                   = 1
-  max_size                   = 5
+  max_size                   = 2
   worker_pool_id             = var.worker_pool_id
   security_groups            = var.worker_pool_security_groups
   vpc_subnets                = var.worker_pool_subnets
