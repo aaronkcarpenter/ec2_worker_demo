@@ -13,7 +13,7 @@ provider "aws" {
 }
 
 module "aaron_workerpool" {
-  source = "github.com/spacelift-io/terraform-aws-spacelift-workerpool-on-ec2?ref=v4.0.0"
+  source = "github.com/spacelift-io/terraform-aws-spacelift-workerpool-on-ec2?ref=v4.4.0"
 
   secure_env_vars = {
     SPACELIFT_TOKEN            = var.worker_pool_config
@@ -25,6 +25,7 @@ module "aaron_workerpool" {
   worker_pool_id             = var.worker_pool_id
   security_groups            = var.worker_pool_security_groups
   vpc_subnets                = var.worker_pool_subnets
+  ec2_instance_type          = "t3.medium"
 
   spacelift_api_credentials = {
     api_key_id       = var.spacelift_api_key_id
